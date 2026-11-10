@@ -1,0 +1,10 @@
+
+# Credenciais
+backend/.env
+
+# Ambiente virtual
+backend/venv/
+
+# Python
+__pycache__/
+*.py[cod]

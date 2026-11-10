@@ -30,3 +30,16 @@ Esta versão acrescenta suporte inicial a Progressive Web App (PWA) ao protótip
 
 ## Observação
 O nome Sportfolio está mantido como nome de trabalho do repositório. A identidade final pode ser alterada depois.
+
+
+## Melhorias de experiência de uso (v0.2)
+
+A identidade visual original foi preservada. Esta atualização melhora a orientação e a navegação sem remover áreas ou funcionalidades demonstradas:
+
+- Busca no menu para localizar rapidamente uma seção (também pode usar a tecla `/`).
+- Orientações contextuais opcionais em cada área, explicando para que ela serve e como começar.
+- Atalho “Novo registro” com opções organizadas por tipo de informação.
+- Navegação com indicação clara da seção atual, suporte a teclado e melhorias no menu para celular.
+- Atualização da versão do cache offline para que o navegador receba a nova interface.
+
+**Importante:** o protótipo continua utilizando dados fictícios. Os atalhos direcionam para as áreas correspondentes; ainda não há gravação real de registros, autenticação ou banco de dados.

@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from bson import ObjectId
 
 from werkzeug.security import (
     generate_password_hash,
@@ -54,3 +55,24 @@ def authenticate_user(email, password):
         "email": user["email"],
         "email_verified": user["email_verified"]
     }
+
+
+def get_user_by_id(user_id):
+    try:
+        user = collection.find_one({
+            "_id": ObjectId(user_id)
+        })
+
+        if not user:
+            return None
+
+        return {
+            "_id": str(user["_id"]),
+            "name": user["name"],
+            "email": user["email"],
+            "email_verified": user["email_verified"],
+            "created_at": user["created_at"]
+        }
+
+    except Exception:
+        return None

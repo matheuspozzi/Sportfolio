@@ -1,10 +1,15 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import (
+    create_access_token,
+    jwt_required,
+    get_jwt_identity
+)
 from pymongo.errors import DuplicateKeyError
 
 from services.user_service import (
     create_user,
-    authenticate_user
+    authenticate_user,
+    get_user_by_id
 )
 
 from validators.user_validator import validate_user_data
@@ -74,5 +79,21 @@ def login():
     return jsonify({
         "message": "Login realizado com sucesso.",
         "access_token": access_token,
+        "user": user
+    }), 200
+
+@users_bp.route("/api/users/me", methods=["GET"])
+@jwt_required()
+def get_current_user():
+    user_id = get_jwt_identity()
+
+    user = get_user_by_id(user_id)
+
+    if not user:
+        return jsonify({
+            "error": "Usuário não encontrado."
+        }), 404
+
+    return jsonify({
         "user": user
     }), 200

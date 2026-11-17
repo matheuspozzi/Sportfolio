@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1014">
+<meta name="description" content="Sua trajetória esportiva em um só lugar.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sportfolio">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+<title>Sportfolio — Histórico esportivo</title>
+<script>
+  (function () {
+    try {
+      const savedTheme = localStorage.getItem('sportfolio-theme') || 'auto';
+      const validTheme = ['auto', 'light', 'dark'].includes(savedTheme) ? savedTheme : 'auto';
+      document.documentElement.setAttribute('data-theme', validTheme);
+    } catch (error) {
+      document.documentElement.setAttribute('data-theme', 'auto');
+    }
+  })();
+</script>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body><div class="app">
+<aside class="sidebar" id="sidebar" aria-label="Menu do Sportfolio"><div class="brand"><div class="brandmark">A</div><div><strong>ATLETA</strong><small>Sports record</small></div></div>
+<div class="nav-search-wrap">
+<label class="nav-search-label" for="navSearch">ENCONTRE UMA ÁREA</label>
+<div class="nav-search"><span aria-hidden="true">⌕</span><input id="navSearch" type="search" placeholder="Buscar no Sportfolio" autocomplete="off" aria-label="Buscar seção do Sportfolio"><kbd>/</kbd></div>
+<p class="nav-search-empty" id="navSearchEmpty" hidden>Nenhuma seção encontrada.</p>
+</div>
+<div><div class="navlabel">ESPAÇO DO ATLETA</div><nav class="nav" aria-label="Navegação principal">
+<button class="active" data-page="overview"><span class="ico">▦</span> Visão geral</button><button data-page="profile"><span class="ico">◎</span> Meu perfil</button><button data-page="career"><span class="ico">⌁</span> Histórico esportivo</button><button data-page="physical"><span class="ico">⌁</span> Evolução física</button><button data-page="matches"><span class="ico">◷</span> Partidas e estatísticas</button><button data-page="media"><span class="ico">▧</span> Fotos e vídeos</button></nav></div>
+<div><div class="navlabel">CONTA</div><nav class="nav" aria-label="Configurações da conta"><button data-page="privacy"><span class="ico">◇</span> Privacidade</button><button data-page="settings"><span class="ico">⚙</span> Configurações</button></nav></div><div class="sidebottom">Protótipo de produto · versão 0.1<br><span style="color:#65777e">Dados demonstrativos</span></div></aside>
+<main class="main"><header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="btn mobilemenu" id="menu" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="crumb">Espaço do atleta　/　<b id="crumb">Visão geral</b></div></div><div class="topright"><button class="btn" id="installApp" hidden>＋ Instalar app</button><span class="status">● Perfil privado</span><div class="avatar">MR</div></div></header>
+<div class="content">
+<section class="section active" id="overview"><div class="pagehead"><div><div class="eyebrow">PAINEL DO ATLETA</div><h1>Visão geral</h1><p class="sub">Acompanhe sua trajetória e mantenha seu histórico esportivo organizado.</p></div><div class="actions"><button class="btn" data-goto="privacy">↗ Compartilhar perfil</button><button class="btn primary" id="openQuickActions">＋ Novo registro</button></div></div>
+<div class="profilehero"><div class="hero-card"><div class="person"><div class="photo">MR</div><div><h2>Matheus Rodrigues</h2><p>Futsal · Ala / Fixo · Curitiba, PR</p><div class="tags"><span class="tag green">Atleta amador</span><span class="tag">Pé direito</span><span class="tag">Perfil privado</span></div></div></div><div class="hero-foot"><div class="mini-stat"><span>Idade</span><b>20 anos</b></div><div class="mini-stat"><span>Altura</span><b>1,85 m</b></div><div class="mini-stat"><span>Peso</span><b>70 kg</b></div><div class="mini-stat"><span>Modalidade</span><b>Futsal</b></div></div></div><div class="focus-card"><div class="focus-head"><span>COMPLETUDE DO PERFIL</span><span>68%</span></div><h3>Seu histórico está tomando forma.</h3><p>Adicione informações para construir um registro esportivo mais completo.</p><div class="progress"><i></i></div><div class="progressnote"><span>Próximo passo: histórico de clubes</span><span>68 / 100</span></div></div></div>
+<div class="stats"><div class="statcard"><div class="statlabel">Partidas registradas</div><div class="statvalue">42</div><div class="statdelta">↗ Histórico da carreira</div></div><div class="statcard"><div class="statlabel">Minutos em quadra</div><div class="statvalue">2.486</div><div class="statdelta neutral">Total registrado</div></div><div class="statcard"><div class="statlabel">Gols</div><div class="statvalue">18</div><div class="statdelta neutral">Dados informados</div></div><div class="statcard"><div class="statlabel">Assistências</div><div class="statvalue">11</div><div class="statdelta neutral">Dados informados</div></div></div>
+<div class="columns"><div class="card"><div class="cardhead"><h3>Evolução física</h3><button class="link" data-goto="physical">Ver avaliações →</button></div><div class="chartlegend"><span><i class="dot"></i>Peso (kg)</span><span><i class="dot" style="background:var(--blue)"></i>Altura (cm)</span></div><div class="chart"><svg viewBox="0 0 600 180" preserveAspectRatio="none"><polyline points="0,130 100,116 200,105 300,88 400,78 500,62 600,55" fill="none" stroke="#b8f36b" stroke-width="3"/><polyline points="0,155 100,145 200,137 300,130 400,120 500,110 600,105" fill="none" stroke="#7cc8e8" stroke-width="2" stroke-dasharray="5 5"/><circle cx="600" cy="55" r="4" fill="#b8f36b"/></svg></div><div class="chartlabels"><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div></div>
+<div class="card"><div class="cardhead"><h3>Linha do tempo</h3><button class="link" data-goto="career">Ver histórico →</button></div><div class="timeline"><div class="event"><div class="eventicon">⚑</div><div><h4>Clube Atlético Exemplo</h4><p>Futsal · Adulto</p><time>2025 — Atual</time></div></div><div class="event"><div class="eventicon">🏆</div><div><h4>Campeonato Regional</h4><p>Vice-campeão · Adulto</p><time>Temporada 2025</time></div></div><div class="event"><div class="eventicon">↗</div><div><h4>Nova etapa esportiva</h4><p>Início de trajetória no clube</p><time>2023 — 2024</time></div></div></div></div></div>
+<div class="card" style="margin-top:16px"><div class="cardhead"><h3>Histórico de clubes</h3><button class="link" data-goto="career">Ver todos →</button></div><div class="clubrow"><div class="crest">CAE</div><div><strong>Clube Atlético Exemplo</strong><small>Futsal · Adulto · 2025 — Atual</small></div><span class="duration">1 ano e 10 meses</span></div><div class="clubrow"><div class="crest">AF</div><div><strong>Academia Futsal</strong><small>Futsal · Sub-20 · 2023 — 2024</small></div><span class="duration">1 ano e 6 meses</span></div></div>
+</section>
+<section class="section" id="profile"><div class="pagehead"><div><div class="eyebrow">IDENTIDADE ESPORTIVA</div><h1>Meu perfil</h1><p class="sub">Informações pessoais, características e apresentação do atleta.</p></div><button class="btn primary" onclick="alert('Edição demonstrativa do perfil')">✎ Editar perfil</button></div><div class="card"><div class="person"><div class="photo">MR</div><div><h2>Matheus Rodrigues</h2><p>Nome esportivo não informado · Curitiba, Paraná</p><div class="tags"><span class="tag green">Futsal</span><span class="tag">Ala</span><span class="tag">Fixo</span><span class="tag">Pé direito</span></div></div></div><div class="hero-foot"><div class="mini-stat"><span>Nascimento</span><b>Não informado</b></div><div class="mini-stat"><span>Nacionalidade</span><b>Brasileira</b></div><div class="mini-stat"><span>Categoria</span><b>Adulto</b></div></div></div><div class="columns" style="margin-top:16px"><div class="card"><div class="cardhead"><h3>Apresentação</h3><button class="link">Editar</button></div><p class="muted">Espaço para o atleta contar sua trajetória, características de jogo, experiências e objetivos esportivos.</p></div><div class="card"><div class="cardhead"><h3>Características individuais</h3><button class="link">Editar</button></div><p class="muted">Descreva seu estilo de jogo, pontos fortes, especialidades e aspectos que deseja desenvolver.</p></div></div></section>
+
+<section class="section" id="career"><div class="pagehead"><div><div class="eyebrow">TRAJETÓRIA</div><h1>Histórico esportivo</h1><p class="sub">Clubes, passagens, categorias, temporadas e conquistas.</p></div><button class="btn primary" onclick="alert('Formulário demonstrativo: adicionar passagem')">＋ Adicionar passagem</button></div><div class="card"><div class="cardhead"><h3>Passagens por clubes</h3><span class="muted">2 registros</span></div><div class="clubrow"><div class="crest">CAE</div><div><strong>Clube Atlético Exemplo</strong><small>Futsal · Adulto · 2025 — Atual</small></div><span class="duration">Atual</span></div><div class="clubrow"><div class="crest">AF</div><div><strong>Academia Futsal</strong><small>Futsal · Sub-20 · 2023 — 2024</small></div><span class="duration">1a 6m</span></div></div><div class="card" style="margin-top:16px"><div class="cardhead"><h3>Conquistas e competições</h3><button class="link">＋ Adicionar</button></div><div class="emptyhint">Nenhuma conquista cadastrada neste protótipo.</div></div></section>
+<section class="section" id="physical"><div class="pagehead"><div><div class="eyebrow">ACOMPANHAMENTO</div><h1>Evolução física</h1><p class="sub">Avaliações, medidas corporais e testes físicos ao longo do tempo.</p></div><button class="btn primary" onclick="alert('Formulário demonstrativo: nova avaliação')">＋ Nova avaliação</button></div><div class="metricgrid"><div class="metric"><span>Altura atual</span><b>1,85 m</b><small>Último registro · 09/11/2026</small></div><div class="metric"><span>Peso atual</span><b>70 kg</b><small>Último registro · 09/11/2026</small></div><div class="metric"><span>Envergadura</span><b>—</b><small>Sem registro</small></div></div><div class="card" style="margin-top:16px"><div class="cardhead"><h3>Histórico de avaliações</h3><button class="link">Filtrar período ▾</button></div><table class="table"><thead><tr><th>DATA</th><th>MEDIDA</th><th>RESULTADO</th><th>OBSERVAÇÃO</th></tr></thead><tbody><tr><td>09/11/2026</td><td>Peso</td><td>70 kg</td><td class="muted">Registro demonstrativo</td></tr><tr><td>09/11/2026</td><td>Altura</td><td>185 cm</td><td class="muted">Registro demonstrativo</td></tr></tbody></table></div></section>
+<section class="section" id="matches"><div class="pagehead"><div><div class="eyebrow">DESEMPENHO</div><h1>Partidas e estatísticas</h1><p class="sub">Participações, minutagem e indicadores registrados pelo atleta.</p></div><button class="btn primary" onclick="alert('Formulário demonstrativo: registrar partida')">＋ Registrar partida</button></div><div class="stats"><div class="statcard"><div class="statlabel">Partidas</div><div class="statvalue">42</div></div><div class="statcard"><div class="statlabel">Minutos</div><div class="statvalue">2.486</div></div><div class="statcard"><div class="statlabel">Gols</div><div class="statvalue">18</div></div><div class="statcard"><div class="statlabel">Assistências</div><div class="statvalue">11</div></div></div><div class="card"><div class="cardhead"><h3>Partidas recentes</h3><button class="link">Filtros ▾</button></div><table class="table"><thead><tr><th>DATA</th><th>ADVERSÁRIO</th><th>COMPETIÇÃO</th><th>MINUTOS</th><th>GOLS</th><th>ASSIST.</th></tr></thead><tbody><tr><td>02/11/2026</td><td>Equipe Azul</td><td>Regional</td><td>40</td><td>1</td><td>1</td></tr><tr><td>25/10/2026</td><td>Futsal Clube</td><td>Regional</td><td>32</td><td>0</td><td>1</td></tr><tr><td>18/10/2026</td><td>União Esportiva</td><td>Amistoso</td><td>40</td><td>2</td><td>0</td></tr></tbody></table><p class="muted" style="font-size:10px;margin:12px 0 0">Dados fictícios para demonstração da interface.</p></div></section>
+<section class="section" id="media"><div class="pagehead"><div><div class="eyebrow">ACERVO PESSOAL</div><h1>Fotos e vídeos</h1><p class="sub">Registros visuais organizados por clube, temporada, partida e categoria.</p></div><button class="btn primary" onclick="alert('Ação demonstrativa: adicionar mídia')">＋ Adicionar mídia</button></div><div class="gallery"><div class="media"><span>Treinamento<small>2026 · Clube atual</small></span></div><div class="media"><span>Competição regional<small>2025 · Partida</small></span></div><div class="media"><span>Apresentação<small>2024 · Perfil</small></span></div></div><div class="emptyhint" style="margin-top:15px">Imagens ilustrativas. O armazenamento real de fotos e vídeos será implementado posteriormente.</div></section>
+<section class="section" id="privacy"><div class="pagehead"><div><div class="eyebrow">CONTROLE DO ATLETA</div><h1>Privacidade</h1><p class="sub">Você decide quais informações poderão ser visualizadas por outras pessoas.</p></div></div><div class="card"><div class="cardhead"><h3>Visibilidade do perfil</h3><span class="pill">Privado</span></div><p class="muted">Seu perfil está privado. Quando estiver pronto, você poderá escolher o que compartilhar.</p><div class="clubrow"><div><strong>Perfil público</strong><small>Permitir que outras pessoas encontrem seu perfil</small></div><span class="duration">Desativado</span></div><div class="clubrow"><div><strong>Dados físicos</strong><small>Altura, peso, avaliações e medidas</small></div><span class="duration">Privado</span></div><div class="clubrow"><div><strong>Histórico esportivo</strong><small>Clubes, categorias e temporadas</small></div><span class="duration">Privado</span></div><div class="clubrow"><div><strong>Partidas e estatísticas</strong><small>Minutagem e desempenho</small></div><span class="duration">Privado</span></div><div class="clubrow"><div><strong>Fotos e vídeos</strong><small>Galeria e registros audiovisuais</small></div><span class="duration">Privado</span></div></div></section>
+<section class="section" id="settings">
+<div class="pagehead"><div><div class="eyebrow">PREFERÊNCIAS</div><h1>Configurações</h1><p class="sub">Personalize a aparência e as preferências do Sportfolio.</p></div></div>
+<div class="card theme-settings">
+  <div class="cardhead"><h3>Aparência</h3><span class="pill">Personalização</span></div>
+  <div class="theme-setting-row">
+    <div class="theme-setting-copy">
+      <strong>Tema do aplicativo</strong>
+      <p class="muted">Escolha como o Sportfolio será exibido neste dispositivo.</p>
+    </div>
+    <label class="theme-select-label" for="themeSelect">Preferência de tema</label>
+    <select id="themeSelect" class="theme-select">
+      <option value="auto">Automático (seguir dispositivo)</option>
+      <option value="light">Claro</option>
+      <option value="dark">Escuro</option>
+    </select>
+  </div>
+  <p class="theme-help muted" id="themeHelp">O tema acompanha automaticamente a aparência configurada no seu dispositivo.</p>
+</div>
+<div class="card" style="margin-top:16px"><div class="cardhead"><h3>Conta</h3></div><p class="muted">Outras configurações de conta serão disponibilizadas em uma próxima etapa do desenvolvimento.</p></div>
+</section>
+</div></main></div>
+<dialog class="quick-dialog" id="quickDialog" aria-labelledby="quickTitle">
+  <div class="quick-dialog-head"><div><div class="eyebrow">ATALHOS</div><h2 id="quickTitle">O que você deseja registrar?</h2><p>Escolha uma área para continuar. Você poderá preencher os detalhes dentro dela.</p></div><button class="dialog-close" id="closeQuickActions" aria-label="Fechar">×</button></div>
+  <div class="quick-grid">
+    <button class="quick-option" data-quick-goto="profile"><span class="quick-icon">◎</span><span><strong>Informações do perfil</strong><small>Dados pessoais e características esportivas</small></span><b>→</b></button>
+    <button class="quick-option" data-quick-goto="career"><span class="quick-icon">⌁</span><span><strong>Passagem por clube</strong><small>Clubes, categorias e temporadas</small></span><b>→</b></button>
+    <button class="quick-option" data-quick-goto="physical"><span class="quick-icon">⌁</span><span><strong>Avaliação física</strong><small>Medidas, testes e evolução</small></span><b>→</b></button>
+    <button class="quick-option" data-quick-goto="matches"><span class="quick-icon">◷</span><span><strong>Partida e estatísticas</strong><small>Participação, minutos e desempenho</small></span><b>→</b></button>
+    <button class="quick-option" data-quick-goto="media"><span class="quick-icon">▧</span><span><strong>Foto ou vídeo</strong><small>Momentos da sua trajetória esportiva</small></span><b>→</b></button>
+  </div>
+</dialog>
+<script src="./js/navigation.js"></script>
+<script src="./js/theme.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>

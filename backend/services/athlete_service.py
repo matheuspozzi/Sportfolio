@@ -1,4 +1,4 @@
-
+from services.athlete_access_service import collection as access_collection
 from datetime import datetime, timezone
 from bson import ObjectId
 
@@ -32,9 +32,21 @@ def create_athlete(data):
     return athlete
 
 
-def list_athletes():
+def list_athletes(user_id):
+    accesses = access_collection.find({
+        "user_id": ObjectId(user_id),
+        "status": "active"
+    })
+
+    athlete_ids = [
+        access["athlete_id"]
+        for access in accesses
+    ]
+
     athletes = list(
-        collection.find().sort("created_at", -1).limit(100)
+        collection.find({
+            "_id": {"$in": athlete_ids}
+        }).sort("created_at", -1).limit(100)
     )
 
     return [serialize_athlete(a) for a in athletes]

@@ -5,33 +5,41 @@ from pymongo import ASCENDING
 
 from database import db
 
-
 collection = db["athlete_access"]
 
 
 # Índices para evitar vínculos duplicados e mais de um titular principal.
-collection.create_index(
-    [("user_id", ASCENDING), ("athlete_id", ASCENDING)],
-    unique=True,
-    partialFilterExpression={"status": "active"}
-)
+def initialize_indexes():
+    collection.create_index(
+        [("user_id", ASCENDING), ("athlete_id", ASCENDING)],
+        unique=True,
+        partialFilterExpression={"status": "active"}
+    )
 
-collection.create_index(
-    [("athlete_id", ASCENDING)],
-    unique=True,
-    partialFilterExpression={
-        "status": "active",
-        "is_primary": True
-    }
-)
+    collection.create_index(
+        [("athlete_id", ASCENDING)],
+        unique=True,
+        partialFilterExpression={
+            "status": "active",
+            "is_primary": True
+        }
+    )
 
 
 VALID_ROLES = {"guardian", "athlete", "editor", "viewer"}
+
+VALID_PERMISSIONS = {
+    "view",
+    "edit",
+    "manage_access"
+}
 
 
 def serialize_access(access):
     if not access:
         return None
+
+    access = access.copy()
 
     access["_id"] = str(access["_id"])
     access["user_id"] = str(access["user_id"])
@@ -54,6 +62,17 @@ def create_access(
     if role not in VALID_ROLES:
         raise ValueError("Tipo de acesso inválido.")
 
+
+    if permissions is not None:
+        if not isinstance(permissions, dict):
+            raise ValueError("Permissões devem ser um dicionário.")
+
+        if not set(permissions).issubset(VALID_PERMISSIONS):
+            raise ValueError("Permissão inválida.")
+
+        if not all(type(value) is bool for value in permissions.values()):
+            raise ValueError("Valor de permissão inválido.")
+
     now = datetime.now(timezone.utc)
 
     access = {
@@ -62,7 +81,7 @@ def create_access(
         "role": role,
         "status": "active",
         "is_primary": is_primary,
-        "permissions": permissions or {
+        "permissions": permissions if permissions is not None else {
             "view": True,
             "edit": False,
             "manage_access": False
@@ -105,6 +124,9 @@ def has_permission(user_id, athlete_id, permission):
     if not ObjectId.is_valid(athlete_id):
         return False
 
+    if permission not in VALID_PERMISSIONS:
+        return False
+
     access = collection.find_one({
         "user_id": ObjectId(user_id),
         "athlete_id": ObjectId(athlete_id),
@@ -117,7 +139,12 @@ def has_permission(user_id, athlete_id, permission):
     if access.get("is_primary"):
         return True
 
-    return access.get("permissions", {}).get(permission, False)
+    permissions = access.get("permissions")
+
+    if not isinstance(permissions, dict):
+        return False
+
+    return permissions.get(permission, False) is True
 
 def is_primary_responsible(user_id, athlete_id):
     if not ObjectId.is_valid(user_id):

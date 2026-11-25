@@ -1,5 +1,5 @@
-
 import os
+
 from pymongo import MongoClient
 from dotenv import load_dotenv
 
@@ -12,7 +12,8 @@ if not MONGO_URI:
 
 client = MongoClient(
     MONGO_URI,
-    serverSelectionTimeoutMS=5000
+    serverSelectionTimeoutMS=5000,
+    connect=False
 )
 
 db = client["sportfolio"]

@@ -8,7 +8,12 @@ collection = db["athletes"]
 
 
 def serialize_athlete(athlete):
+    if not athlete:
+        return None
+
+    athlete = athlete.copy()
     athlete["_id"] = str(athlete["_id"])
+
     return athlete
 
 
@@ -64,11 +69,14 @@ def get_athlete(athlete_id):
 
 
 def update_athlete(athlete_id, data):
-    data["updated_at"] = datetime.now(timezone.utc)
+    update_data = {
+        **data,
+        "updated_at": datetime.now(timezone.utc)
+    }
 
     result = collection.update_one(
         {"_id": ObjectId(athlete_id)},
-        {"$set": data}
+        {"$set": update_data}
     )
 
     if result.matched_count == 0:
@@ -77,8 +85,17 @@ def update_athlete(athlete_id, data):
     return get_athlete(athlete_id)
 
 def delete_athlete(athlete_id):
+    athlete_object_id = ObjectId(athlete_id)
+
     result = collection.delete_one({
-        "_id": ObjectId(athlete_id)
+        "_id": athlete_object_id
     })
 
-    return result.deleted_count > 0
+    if result.deleted_count == 0:
+        return False
+
+    access_collection.delete_many({
+        "athlete_id": athlete_object_id
+    })
+
+    return True

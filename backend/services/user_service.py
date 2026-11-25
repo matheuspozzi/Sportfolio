@@ -9,7 +9,13 @@ from werkzeug.security import (
 from database import db
 
 collection = db["users"]
-collection.create_index("email", unique=True)
+
+
+def initialize_user_indexes():
+    collection.create_index(
+        "email",
+        unique=True
+    )
 
 def create_user(data):
     now = datetime.now(timezone.utc)

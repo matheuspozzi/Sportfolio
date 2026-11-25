@@ -10,7 +10,7 @@ from services.athlete_service import (
     delete_athlete
 )
 
-from services.athlete_access_service import create_access
+from services.athlete_access_service import create_access, is_primary_responsible
 from services.authorization_service import check_athlete_permission
 from validators.athlete_validator import validate_athlete_data
 
@@ -157,10 +157,9 @@ def delete(athlete_id):
 
     user_id = get_jwt_identity()
 
-    allowed = check_athlete_permission(
+    allowed = is_primary_responsible(
         user_id=user_id,
-        athlete_id=athlete_id,
-        permission="manage_access"
+        athlete_id=athlete_id
     )
 
     if not allowed:

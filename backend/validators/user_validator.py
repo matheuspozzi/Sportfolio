@@ -22,7 +22,7 @@ def validate_user_data(data):
     email = data.get("email")
     password = data.get("password")
 
-    if not all([name, email, password]):
+    if name is None or email is None or password is None:
         return None, "Nome, e-mail e senha são obrigatórios."
 
     if not isinstance(name, str) or len(name.strip()) < 2:

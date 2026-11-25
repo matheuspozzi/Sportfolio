@@ -1,5 +1,5 @@
 import os
-
+from services.user_service import initialize_user_indexes
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -10,8 +10,9 @@ from flask_jwt_extended import JWTManager
 from database import test_connection
 from routes.athletes import athletes_bp
 from routes.users import users_bp
+from services.athlete_access_service import initialize_indexes
+from pymongo.errors import PyMongoError
 
-load_dotenv()
 
 app = Flask(__name__)
 
@@ -27,6 +28,9 @@ jwt = JWTManager(app)
 app.register_blueprint(athletes_bp)
 app.register_blueprint(users_bp)
 
+initialize_indexes()
+initialize_user_indexes()
+
 
 @app.route("/api/health", methods=["GET"])
 def health():
@@ -39,15 +43,13 @@ def health():
             "application": "Sportfolio"
         }), 200
 
-    except Exception as error:
-        print(f"Erro de conexão: {error}")
+    except PyMongoError:
+        app.logger.exception("Erro de conexão com o MongoDB.")
 
         return jsonify({
             "status": "error",
             "database": "disconnected"
         }), 500
-
-
 if __name__ == "__main__":
     app.run(
         host="127.0.0.1",

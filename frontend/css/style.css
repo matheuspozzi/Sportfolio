@@ -195,3 +195,512 @@
   background: var(--panel);
   color: var(--text);
 }
+/* =========================================
+   SPORTFOLIO - AUTENTICAÇÃO
+========================================= */
+
+#authView {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 36px;
+    box-sizing: border-box;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+}
+
+.auth-logo {
+    color: var(--green);
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.auth-subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 8px 0 30px;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 5px;
+    margin-bottom: 26px;
+    background: var(--bg);
+    border-radius: 10px;
+}
+
+.auth-tabs button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.auth-tabs button.active {
+    background: var(--panel2);
+    color: var(--green);
+}
+
+.auth-field {
+    margin-bottom: 19px;
+}
+
+.auth-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.auth-field input {
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    outline: none;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+}
+
+.auth-field input:focus {
+    border-color: var(--green);
+}
+
+.auth-submit {
+    width: 100%;
+    padding: 15px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 9px;
+    background: var(--green);
+    color: #10170a;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity .2s, transform .2s;
+}
+
+.auth-submit:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+}
+
+#authMessage {
+    min-height: 18px;
+    font-size: 13px;
+    margin-top: 14px;
+}
+
+.auth-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.auth-footer span:first-child {
+    color: var(--green);
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 480px) {
+    #authView {
+        padding: 16px;
+    }
+
+    .auth-card {
+        padding: 26px 20px;
+    }
+
+    .auth-footer {
+        flex-direction: column;
+    }
+}
+
+
+/* Controle de exibição das telas */
+body:not(.dashboard-active) .app {
+    display: none !important;
+}
+
+body.dashboard-active #authView {
+    display: none !important;
+}
+
+
+/* ==========================================
+   SPORTFOLIO - AUTHENTICATION PREMIUM
+========================================== */
+
+#authView {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    background: #0b1014;
+    display: block;
+}
+
+.auth-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(420px, .85fr);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.auth-showcase {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 7%;
+    background:
+        radial-gradient(ellipse at 75% 45%, rgba(184,243,107,.10), transparent 42%),
+        linear-gradient(145deg, #111a20, #0b1014 75%);
+    border-right: 1px solid #26343b;
+}
+
+.showcase-top,
+.showcase-bottom {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.showcase-logo {
+    color: #b8f36b;
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.showcase-version,
+.showcase-bottom {
+    color: #718087;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.showcase-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    margin: 70px 0;
+}
+
+.showcase-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #b8f36b;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #b8f36b;
+    box-shadow: 0 0 12px #b8f36b;
+}
+
+.showcase-content h1 {
+    margin: 0;
+    color: #edf4f2;
+    font-size: clamp(42px, 5.2vw, 76px);
+    line-height: 1.08;
+    letter-spacing: -3px;
+    font-weight: 850;
+}
+
+.showcase-content h1 span {
+    color: #b8f36b;
+}
+
+.showcase-content > p {
+    max-width: 430px;
+    margin-top: 25px;
+    color: #8fa0a7;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.showcase-stats {
+    display: flex;
+    gap: 45px;
+    margin-top: 55px;
+}
+
+.showcase-stats div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.showcase-stats strong {
+    color: #edf4f2;
+    font-size: 26px;
+}
+
+.showcase-stats span {
+    color: #718087;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+.showcase-decoration {
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    width: 350px;
+    height: 350px;
+    transform: translateY(-50%);
+    border: 1px solid rgba(184,243,107,.12);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.decoration-circle {
+    position: absolute;
+    inset: 35px;
+    border: 1px solid rgba(184,243,107,.10);
+    border-radius: 50%;
+}
+
+.decoration-line {
+    position: absolute;
+    top: 50%;
+    left: -30%;
+    width: 160%;
+    height: 1px;
+    background: rgba(184,243,107,.13);
+    transform: rotate(-35deg);
+}
+
+.showcase-decoration > span {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    width: 100%;
+    color: rgba(184,243,107,.35);
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.auth-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 45px;
+    background: #0d1419;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.auth-mobile-logo {
+    display: none;
+    color: #b8f36b;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 45px;
+}
+
+.auth-heading {
+    margin-bottom: 32px;
+}
+
+.auth-eyebrow {
+    color: #b8f36b;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.auth-heading h2 {
+    color: #edf4f2;
+    font-size: 30px;
+    letter-spacing: -1px;
+    margin: 13px 0 8px;
+}
+
+.auth-heading p {
+    color: #8fa0a7;
+    font-size: 14px;
+}
+
+.auth-tabs {
+    margin-bottom: 30px;
+}
+
+.auth-field input {
+    min-height: 49px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.auth-field input:focus {
+    border-color: #b8f36b;
+    box-shadow: 0 0 0 3px rgba(184,243,107,.08);
+}
+
+.auth-submit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 19px;
+}
+
+.auth-submit span {
+    font-size: 20px;
+}
+
+.auth-footer {
+    margin-top: 45px;
+}
+
+@media (max-width: 900px) {
+    .auth-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-showcase {
+        min-height: 390px;
+        padding: 30px 7%;
+    }
+
+    .showcase-content {
+        margin: 45px 0;
+    }
+
+    .showcase-content h1 {
+        font-size: 48px;
+    }
+
+    .showcase-stats {
+        margin-top: 30px;
+    }
+
+    .showcase-decoration {
+        right: -180px;
+    }
+
+    .auth-panel {
+        padding: 55px 25px;
+    }
+}
+
+@media (max-width: 520px) {
+    .auth-showcase {
+        min-height: 340px;
+    }
+
+    .showcase-version {
+        display: none;
+    }
+
+    .showcase-content h1 {
+        font-size: 39px;
+        letter-spacing: -2px;
+    }
+
+    .showcase-content > p {
+        font-size: 13px;
+    }
+
+    .showcase-stats {
+        gap: 25px;
+    }
+
+    .showcase-stats strong {
+        font-size: 21px;
+    }
+
+    .showcase-bottom {
+        font-size: 8px;
+    }
+
+    .auth-panel {
+        padding: 40px 22px;
+    }
+
+    .auth-heading h2 {
+        font-size: 26px;
+    }
+}
+
+
+/* Campos de senha - Sportfolio */
+.auth-password-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.auth-password-wrap input {
+    padding-right: 82px;
+}
+
+.auth-password-toggle {
+    position: absolute;
+    right: 12px;
+    border: none;
+    background: transparent;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.auth-password-toggle:hover {
+    opacity: .75;
+}
+
+
+.logout-button {
+    color: #e58b8b !important;
+}
+
+.logout-button:hover {
+    background: rgba(229,139,139,.08) !important;
+}
+
